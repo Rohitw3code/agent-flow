@@ -1,0 +1,24 @@
+llm:
+  model: meta-llama/llama-4-maverick-17b-128e-instruct
+  temperature: 0.7
+
+agent:
+  max_reflection_iterations: 3
+
+prompts:
+  planning: |
+    Given this question: {question}.
+    Make a detailed step-by-step plan to answer it accurately.
+  execution: |
+    Follow this plan: {plan}
+    To answer the question: {question}.
+    Provide a clear and concise answer.
+  reflection: |
+    Check this output: {output}
+    For the question: {question}.
+    Is there any problem, error, or inaccuracy? If yes, describe the issues in detail. If no, say "No issues detected."
+  solving: |
+    There are these problems: {problems}
+    In the previous output: {output}.
+    For the question: {question}.
+    Provide a corrected and improved version of the output.
