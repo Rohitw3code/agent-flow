@@ -1,10 +1,10 @@
 import logging
+import openai
 import os
-from groq import Groq
 
 class LLMInterface:
-    def __init__(self, model="llama3-70b-8192", temperature=0.7):
-        self.client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+    def __init__(self, model, temperature):
+        self.client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         self.model = model
         self.temperature = temperature
         self.logger = logging.getLogger(__name__)
@@ -18,5 +18,5 @@ class LLMInterface:
             )
             return response.choices[0].message.content.strip()
         except Exception as e:
-            self.logger.error(f"Groq API error: {e}")
+            self.logger.error(f"LLM API error: {e}")
             raise

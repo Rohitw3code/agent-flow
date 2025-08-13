@@ -16,8 +16,7 @@ class SelfReflectingAgent:
 
     def run(self, question):
         self.logger.info(f"Processing question: {question}")
-        available_tools = ["WikipediaTool", "CalculatorTool"]
-        plan = self.planner.generate_plan(question, available_tools)
+        plan = self.planner.generate_plan(question)
         self.logger.debug(f"Generated plan: {plan}")
         output = self.executor.execute_plan(question, plan)
         self.logger.debug(f"Initial output: {output}")
